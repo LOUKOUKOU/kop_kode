@@ -1,0 +1,50 @@
+body{text-align: center;}
+#myCanvas{width:800px; height:400px; border:1px solid #c3c3c3;}
+#display{width: 830px; padding: 2%;float: left; border: 1px solid;}
+.val{width: 50px; margin-bottom: 10px;}
+#actions_div{width: 35%; padding: 2%;float: left; border: 1px solid;margin-left: 1%;text-align: left;}
+select{width:100px;}
+
+div#actions_div select{margin-bottom: 10px;}
+div#actions_div select.leaf, div#actions_div input.leaf{display: inline-block; width: 70px; background-color: lightgreen; margin-left: 5px;}
+div#actions_div select.branch{display: inline-block; background-color: #6d4848; color: white;}
+
+div#actions_div section{
+	margin-left: 10px;
+}
+
+option.re{
+	background-color: #FF0000;
+	color: #FF0000;
+}
+
+option.gr{
+	background-color: #00FF00;
+	color: #00FF00;
+}
+	
+option.bu{
+	background-color: #0000FF;
+	color: #0000FF;
+}
+option.ye{
+	background-color: #FFFF00;
+	color: #FFFF00;
+}
+
+option.or{
+	background-color: #FF8C00;
+	color:  #FF8C00;
+}
+option.pu{
+	background-color: #800080;
+	color: #800080;
+}
+option.bl{
+	background-color: #000000;
+	color: #000000;
+}
+option.wh{
+	background-color: #FFFFFF;
+	color: #FFFFFF;
+}

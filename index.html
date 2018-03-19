@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<meta charset="utf-8">
+</head>
+<body>
+	<!-- <div><input type="file" id="fileinput" /></div> -->
+	<div id="display">
+		<canvas id="myCanvas" >
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<button onclick="update('backward')">backward</button>
+		<button onclick="start_compiler_root()">compile</button>
+		<button onclick="update('forward')">foreward</button>
+		<p id="x"></p>
+	</div>
+
+	<div id="actions_div">
+		<hr>
+		
+		<hr>
+		<select onchange="on_change.add(this)" class="branch" id="move-87558">
+			<option>none</option>
+			<option>move</option>
+			<option>loop</option>
+			<option>if</option>
+			<option>while</option>
+		</select></div>
+
+
+	<script type="text/javascript" src="system.js"></script>
+	<script type="text/javascript" src="blocks.js"></script>
+	<script type="text/javascript" src="code_phase.js"></script>
+	<script type="text/javascript" src="compiler_phase.js"></script>
+	<script type="text/javascript" src="execution_phase.js"></script>
+</body>
+</html>
