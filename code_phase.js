@@ -17,9 +17,13 @@ function event_change_main(inCoder) {
 function coder(){
 
 	this.add = function(obj){
-		this.build_tree(obj);
-		let temp = SELECT();
-		obj.parentElement.appendChild(temp);
+		if (obj.value === 'remove' || obj.value === 'clear' || obj.value === 'clear & remove' ) {
+			this.remove_tree(obj);
+		}else{
+			this.build_tree(obj);
+			let temp = SELECT();
+			obj.parentElement.appendChild(temp);
+		}
 	}
 
 	this.build_tree = function(obj){
@@ -39,7 +43,7 @@ function coder(){
 		        leaf_element = DIRECTION(branch_id);
 		}
 
-		let br = ENDLINE();
+		let br = ENDLINE(branch_id);
 
 		obj.parentElement.appendChild(leaf_element);
 		obj.parentElement.appendChild(br);
@@ -49,8 +53,55 @@ function coder(){
 			let scope = HOLDER(branch_id);
 			scope.appendChild(select);
 			obj.parentElement.appendChild(scope);
+			addOptions([obj.value, 'remove', 'clear', 'clear & remove'], obj);
+		}else{
+			addOptions([obj.value, 'remove'], obj);
 		}
 
+	}
+//TODO: remove duplicate coding.
+	this.remove_tree = function(obj){
+		switch(obj.value) {
+		    case 'remove':
+		        this.remove_branch(obj);
+		        break;
+		    case 'clear':
+		        this.remove_leafs(obj);
+		        break;
+		    case 'clear & remove':
+		        this.remove_leafs(obj);
+		        this.remove_branch(obj);
+		}
+	}
+
+	this.remove_branch = function(obj){
+		let temp = document.getElementsByClassName(obj.id);
+		let leafs = temp[temp.length-1];
+		console.log(`branch: ${obj.innerHTML}`);
+		if (leafs.tagName === 'SECTION') {	
+			while (leafs.firstChild && !(leafs.firstChild.value === 'none'&&leafs.firstChild.classList.contains('branch')))
+			{
+			    leafs.parentNode.insertBefore(leafs.firstChild, leafs);
+			}
+		}
+		while(temp.length>0){temp[0].parentNode.removeChild(temp[0]);}
+		obj.parentNode.removeChild(obj);
+	}
+
+	this.remove_leafs = function(obj){
+		let temp = document.getElementsByClassName(obj.id);
+		let leafs = temp[temp.length-1];
+		console.log(`leaf: ${obj.innerHTML}`);
+		if (leafs.tagName === 'SECTION') {
+			while (leafs.firstChild && !(leafs.firstChild.value === 'none'&&leafs.firstChild.classList.contains('branch')))
+			{
+				if (leafs.firstChild.classList.contains('branch')) {
+					this.remove_leafs(leafs.firstChild);
+			    	this.remove_branch(leafs.firstChild);
+				}
+			}
+			obj.value = obj.options[0].text;
+		}
 	}
 }
 

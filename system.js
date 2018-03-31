@@ -14,8 +14,6 @@ let color = {re: "#FF0000",gr: "#00FF00",bu: "#0000FF",	ye: "#FFFF00",or: "#FF8C
 
 let c = document.getElementById("myCanvas");
 let ctx = c.getContext("2d");
-/*let action = new mover();
-let clr = new color();*/
 let drawer = new level_drawer(level, player);
 let EVENT;
 

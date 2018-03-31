@@ -40,16 +40,27 @@ const HOLDER = function(attribute){
 	return temp;
 }
 
-const ENDLINE = function(){
+const ENDLINE = function(attribute){
 	let temp = document.createElement('br');
+	temp.setAttribute("class", attribute);
 	return temp;
 }
 
 function addOptions(arr, opt){
-	arr.forEach(function(element) {
-	  let temp = document.createElement("option");
-	  temp.text = element;
-	  temp.setAttribute("class", element);	
-	  opt.add(temp);
-	});
+	for(let i = 0; arr[i]||opt.options[i]; ){
+		if (arr[i]) {
+			if (!opt.options[i]) {
+				let temp = document.createElement("option");
+				temp.text = arr[i];
+				//temp.setAttribute("class", arr[i]);	
+				opt.add(temp);
+			}else{	
+	  			opt.options[i].text = arr[i];
+			}
+			i++
+		}else{
+			opt.options[i] = null;
+		}
+	}
+	opt.value = arr[0];
 }
