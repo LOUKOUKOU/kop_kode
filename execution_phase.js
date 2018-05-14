@@ -1,81 +1,47 @@
-let track = 0;
-function update(actn) {			
-	if (actn === 'forward') {
-		if (track < ACT.length-1) {
-			track++;
-		}
-	}else if(actn === 'backward'){
-		if(track>0){
-			track--;
+function runner(inDrawer){
+
+	this.track = 0;
+	this.timer;
+	this.speed = 500;
+	this.drawer = inDrawer;
+	this.actions;
+
+	this.start = function(inActions){
+		this.actions = inActions;
+		_this = this;
+		this.timer = setInterval(function(){_this.update();}, this.speed);
+	}	
+
+	this.restart = function(){
+		this.stop();
+		this.track = 0;
+		this.drawer.reset().drawAll();
+	}
+
+	this.stop = function(){
+		clearInterval(this.timer);
+	}	
+
+	this.update = function(){	
+		this.update_track();
+		this.drawer.set_player(this.actions[this.track]).drawAll();
+	}
+
+	this.update_track = function(direction = 'forward'){			
+		if (direction === 'forward') {
+			if (this.track < this.actions.length-1) {
+				this.track++;
+			}else{
+				this.restart();
+			}
+		}else if(direction === 'backward'){
+			if(this.track>0){
+				this.track--;
+			}
 		}
 	}
 
-	drawer.plr = ACT[track];
-	drawer.drawAll();
-}
-
-/*
-
-function action_(inOb) {
-	if (!trace) {
-		ctx.beginPath();
-		ctx.arc(x, y, w, 0, 2 * Math.PI, false);
-		ctx.stroke();
-		ctx.fillStyle = "#000000";
-		ctx.fill();
-	}
-
-	if(lastAction){lastAction.style.backgroundColor = '#ffffff';}
-	inOb[itter].style.backgroundColor = '#666666';
-	if (inOb[itter].value == 'left'||inOb[itter].value == 'right'||inOb[itter].value == 'up'||inOb[itter].value == 'down') {action_move();}else 
-	if (inOb[itter].value == 'if') {action_if();}else 
-	if (inOb[itter].value == 'while') {action_while();}else 
-	if (inOb[itter].value == 'loop') {action_loop(inOb[itter].nextSibling);}else 
-	if (inOb[itter].value == 'method') {action_method();}else 
-	if (clr.rwby.indexOf( inOb[itter].value ) > -1 ) {action_color(inOb[itter].value);}
-	else{action_leave_trail(inOb[itter]);}
-	lastAction = inOb[itter];
-	draw();
-	itter++;
-}
-
-function action_move(inObj){
-	var temp = document.getElementsByClassName('act')[itter].value;
-	if (temp == 'right') {action.right();}else
-	if (temp == 'left') {action.left();}else 
-	if (temp == 'up') {action.up();}else 
-	if (temp == 'down') {action.down();}
-}
-
-function action_leave_trail(inObj){
-	trace = inObj.value;
-}
-
-function action_if(){
-
-}
-
-function action_while(){
-
-}
-
-function action_loop(inOb){
-	var beg = itter;
-	var temp = inOb.getElementsByClassName('act');
-	var count = inOb.getElementsByClassName('val')[0];
-	valItter++;
-	for (var i = 0; i < count.value; i++) {
-		for (var j = 0; j < temp.length; j++) {
-			update();
-		}
-		itter = beg;
+	this.update_speed = function(newSpeed){
+		this.speed = newSpeed;
 	}
 }
-
-function action_method(){
-
-}
-
-function action_color(inClr){
-	clr.clrFunc[inClr]();
-}*/

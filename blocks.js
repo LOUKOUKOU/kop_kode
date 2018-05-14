@@ -1,7 +1,7 @@
 const SELECT = function(){
 	let temp = document.createElement('select');
 	let arr = ['none', 'move', 'loop', 'if', 'while'];
-	addOptions(arr, temp);
+	add_options(arr, temp);
 	temp.setAttribute("onchange", 'on_change.add(this)');
 	temp.classList.add('branch');
 	return temp; 
@@ -10,7 +10,7 @@ const SELECT = function(){
 const DIRECTION = function(attribute){
 	let temp = document.createElement('select');
 	let arr = ['none', 'up', 'down', 'left', 'right'];
-	addOptions(arr, temp);
+	add_options(arr, temp);
 	temp.classList.add(attribute);
 	temp.classList.add('leaf');
 	return temp;
@@ -28,7 +28,7 @@ const LOOPS =  function(attribute){
 const STATEMENT =  function(attribute){
 	let temp = document.createElement('select');
 	let arr = ['none','re','gr','bu','ye','or','pu','bl','wh'];
-	addOptions(arr, temp);
+	add_options(arr, temp);
 	temp.classList.add(attribute);
 	temp.classList.add('leaf');
 	return temp;
@@ -46,7 +46,7 @@ const ENDLINE = function(attribute){
 	return temp;
 }
 
-function addOptions(arr, opt){
+function add_options(arr, opt){
 	for(let i = 0; arr[i]||opt.options[i]; ){
 		if (arr[i]) {
 			if (!opt.options[i]) {
@@ -63,4 +63,8 @@ function addOptions(arr, opt){
 		}
 	}
 	opt.value = arr[0];
+}
+
+function  random(){
+    return Math.floor((Math.random() * 100000) + 1);
 }

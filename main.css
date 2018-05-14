@@ -1,5 +1,5 @@
 body{text-align: center;}
-#myCanvas{width:800px; height:400px; border:1px solid #c3c3c3;}
+#myCanvas{}
 #display{width: 830px; padding: 2%;float: left; border: 1px solid;}
 .val{width: 50px; margin-bottom: 10px;}
 #actions_div{width: 35%; padding: 2%;float: left; border: 1px solid;margin-left: 1%;text-align: left;}

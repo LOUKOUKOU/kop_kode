@@ -8,15 +8,16 @@
 <body>
 	<!-- <div><input type="file" id="fileinput" /></div> -->
 	<main>
-		
-	<div id="display">
-		<canvas id="myCanvas" >
-			Your browser does not support the HTML5 canvas tag.
-		</canvas>
-		<button onclick="update('backward')">backward</button>
-		<button onclick="start_compiler_root()">compile</button>
-		<button onclick="update('forward')">foreward</button>
+	<div id="controls">
+		<button onclick="compile_and_run()">compile and run</button>
+		<button onclick="system_reset()">stop and reset</button>
 		<p id="x"></p>
+	</div>
+
+	<div id="display">
+		<canvas id="myCanvas">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>	
 	</div>
 
 	<div id="actions_div">
@@ -33,10 +34,13 @@
 	</div>
 	</main>
 
-	<script type="text/javascript" src="system.js"></script>
 	<script type="text/javascript" src="blocks.js"></script>
+	<script type="text/javascript" src="level.js"></script>
+	<script type="text/javascript" src="level_handler.js"></script>
+	<script type="text/javascript" src="animator.js"></script>
 	<script type="text/javascript" src="code_phase.js"></script>
 	<script type="text/javascript" src="compiler_phase.js"></script>
 	<script type="text/javascript" src="execution_phase.js"></script>
+	<script type="text/javascript" src="system.js"></script>
 </body>
 </html>
